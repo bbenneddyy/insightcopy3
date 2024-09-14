@@ -1,0 +1,30 @@
+services:
+  nextjs:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: converse-app
+    pull_policy: build
+    volumes:
+      - /srv/mdcu-converse/assets:/app/assets:rw,z
+    restart: always
+    env_file:
+      - stack.env
+    labels:
+      # Traefik configuration discovery
+      # https://doc.traefik.io/traefik/providers/docker/#routing-configuration-with-labels
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.converse-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.converse-redirect.redirectscheme.permanent=true"
+      - "traefik.http.routers.converse-http.middlewares=converse-redirect"
+      - "traefik.http.routers.converse-http.rule=Host(`converse.docchula.com`)"
+      - "traefik.http.routers.converse-http.entrypoints=web"
+      - "traefik.http.routers.converse-https.rule=Host(`converse.docchula.com`)"
+      - "traefik.http.routers.converse-https.entrypoints=websecure"
+      - "traefik.http.routers.converse-https.tls.certresolver=leresolver"
+      - "traefik.http.services.converse-https.loadbalancer.server.port=3000"
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 1G

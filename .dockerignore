@@ -1,0 +1,8 @@
+Dockerfile
+.dockerignore
+node_modules
+*.md
+.next
+.git
+.gitignore
+**/assets/*
