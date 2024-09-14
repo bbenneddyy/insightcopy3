@@ -44,7 +44,7 @@ export default async function ParticipantTable() {
         <GetCSVButton />
       </div>
 
-      <div className="flex justify-center">
+      <div className="overflow-scroll">
         <AdminTable data={data} />
       </div>
     </>

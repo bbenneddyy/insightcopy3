@@ -126,7 +126,7 @@ function MyTable({
     router.push(`/admin/${id}`);
   };
   return (
-    <div className="p-2">
+    <div className="flex flex-col justify-center p-2 w-full">
       <div className="flex items-center gap-2">
         <button
           className="border rounded px-1 h-10"
