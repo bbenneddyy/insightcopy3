@@ -213,8 +213,8 @@ function MyTable({
                         header.getContext()
                       )}
                       {{
-                        asc: " ^",
-                        desc: " v",
+                        asc: " ↑",
+                        desc: " ↓",
                       }[header.column.getIsSorted() as string] ?? null}
                       {header.column.getCanFilter() ? (
                         <div>
@@ -232,7 +232,7 @@ function MyTable({
           {table.getRowModel().rows.map((row) => {
             return (
               <>
-                <tr onClick={() => handleRowClick(row.original.id)}>
+                <tr onClick={() => handleRowClick(row.original.id)} className="cursor-pointer hover:bg-slate-100">
                   {row.getVisibleCells().map((cell) => {
                     return (
                       <td key={cell.id}>
@@ -249,7 +249,6 @@ function MyTable({
           })}
         </tbody>
       </table>
-      <div className="h-2" />
     </div>
   );
 }
@@ -296,7 +295,7 @@ function Filter({
     </div>
   ) : (
     <input
-      className="w-36 border shadow rounded border-gray-200"
+      className="min-w-full border shadow rounded border-gray-200"
       onChange={(e) => column.setFilterValue(e.target.value)}
       onClick={(e) => e.stopPropagation()}
       placeholder={`Search...`}
