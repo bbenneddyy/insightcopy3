@@ -272,6 +272,7 @@ export async function loginUser(
       status: 200,
       firstname: user.firstname,
       lastname: user.lastname,
+      authStatus: user.status,
     };
   } else {
     return {

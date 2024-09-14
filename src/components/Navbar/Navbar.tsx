@@ -19,7 +19,7 @@ export default function Navbar() {
         </h1>
       </Link>
       <ul className="flex text-center space-x-6">
-        <li>
+        <li className="hidden md:block">
           <Link
             href="/"
             className="border-4 p-2 rounded-lg bg-gray-200 hover:border-slate-300 transition ease-in-out z-10"
@@ -27,7 +27,7 @@ export default function Navbar() {
             หน้าหลัก
           </Link>
         </li>
-        {webStatus === "open" &&
+        {webStatus === "open" && (
           <li>
             <Link
               href="/register"
@@ -36,7 +36,15 @@ export default function Navbar() {
               สมัคร
             </Link>
           </li>
-        }
+        )}
+        <li>
+          <Link
+            href="/user"
+            className="border-4 p-2 rounded-lg bg-gray-200 hover:border-slate-300 transition ease-in-out z-10"
+          >
+            เข้าสู่ระบบ
+          </Link>
+        </li>
       </ul>
     </header>
   );
