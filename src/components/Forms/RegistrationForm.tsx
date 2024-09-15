@@ -6,6 +6,8 @@ import { FormEvent, useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { getCurrentNumberOnsiteParticipants } from "@/utils/data";
+import { maximumOnsiteParticipants } from "@/utils/config";
 
 const initialState = {
   message: "",
@@ -30,23 +32,41 @@ export default function RegistrationForm() {
   const [state, formAction] = useFormState(createParticipant, initialState);
   const [selectedImage, setSelectedImage] = useState<File | undefined>();
   const [preview, setPreview] = useState<string | undefined>();
+  const [limit, setLimit] = useState(false);
 
   const router = useRouter();
 
   useEffect(() => {
-    if (typeof window === 'undefined' || !state.message) return;
+    if (typeof window === "undefined" || !state.message) return;
     const scrollToError = () => {
       const errorStateText = document.getElementById("state");
       if (!errorStateText) return;
-      errorStateText.scrollIntoView({ behavior: 'smooth' });
+      errorStateText.scrollIntoView({ behavior: "smooth" });
     };
     window.requestAnimationFrame(scrollToError);
   }, [state.message]);
+
+  useEffect(() => {
+    async function checkOnsiteLimit() {
+      try {
+        const onsiteNumber = await getCurrentNumberOnsiteParticipants();
+        if (onsiteNumber && onsiteNumber >= maximumOnsiteParticipants) {
+          setLimit(true);
+        }
+        return;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    checkOnsiteLimit();
+  }, []);
 
   function onSelectImage(e: any) {
     console.log(e);
     setSelectedImage(e.target.files[0]);
   }
+
   useEffect(() => {
     console.log(selectedImage);
     if (!selectedImage) {
@@ -63,7 +83,11 @@ export default function RegistrationForm() {
   const currentTime = new Date().toISOString();
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    if (!confirm("กรุณาตรวจสอบความถูกต้องของข้อมูลเนื่องจากหลังส่งข้อมูลแล้ว จะไม่สามารถเปลี่ยนแปลงข้อมูลได้")) {
+    if (
+      !confirm(
+        "กรุณาตรวจสอบความถูกต้องของข้อมูลเนื่องจากหลังส่งข้อมูลแล้ว จะไม่สามารถเปลี่ยนแปลงข้อมูลได้"
+      )
+    ) {
       e.preventDefault();
     }
   };
@@ -92,7 +116,11 @@ export default function RegistrationForm() {
           </div>
         </div>
       ) : (
-        <form className="flex-col space-y-10 mx-auto py-9" onSubmit={onSubmit} action={formAction}>
+        <form
+          className="flex-col space-y-10 mx-auto py-9"
+          onSubmit={onSubmit}
+          action={formAction}
+        >
           <div className="flex flex-col items-center space-y-3 rounded-lg shadow-sm">
             <div className="border-b border-gray-900/10 pb-12">
               <h2 className="text-base font-bold leading-7 text-gray-900">
@@ -185,7 +213,9 @@ export default function RegistrationForm() {
                   >
                     อีเมล
                   </label>
-                  <p className="block text-sm font-medium leading-6 text-gray-500">ห้ามใช้อีเมลซ้ำระหว่างผู้เข้าร่วมงาน</p>
+                  <p className="block text-sm font-medium leading-6 text-gray-500">
+                    ห้ามใช้อีเมลซ้ำระหว่างผู้เข้าร่วมงาน
+                  </p>
                   <div className="mt-2">
                     <input
                       id="email"
@@ -204,7 +234,9 @@ export default function RegistrationForm() {
                   >
                     หมายเลขโทรศัพท์
                   </label>
-                  <p className="block text-sm font-medium leading-6 text-gray-500">ตัวเลขเท่านั้น</p>
+                  <p className="block text-sm font-medium leading-6 text-gray-500">
+                    ตัวเลขเท่านั้น
+                  </p>
                   <div className="mt-2">
                     <input
                       id="phone"
@@ -223,7 +255,9 @@ export default function RegistrationForm() {
                   >
                     สิ่งที่แพ้ (อาหาร ยา และ อื่น ๆ)
                   </label>
-                  <p className="block text-sm font-medium leading-6 text-gray-500">เฉพาะผู้สมัคร onsite เท่านั้น</p>
+                  <p className="block text-sm font-medium leading-6 text-gray-500">
+                    เฉพาะผู้สมัคร onsite เท่านั้น
+                  </p>
                   <div className="mt-2">
                     <input
                       id="allergy"
@@ -241,6 +275,9 @@ export default function RegistrationForm() {
                   >
                     ประเภทการสมัคร
                   </label>
+                  {limit && (
+                    <p className="text-red-400">ผู้สมัคร onsite ครบจำนวนแล้ว</p>
+                  )}
                   <div className="mt-2">
                     <select
                       id="site"
@@ -248,7 +285,9 @@ export default function RegistrationForm() {
                       autoComplete="site-type"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
-                      <option value="onsite">Onsite ค่าสมัคร 350 บาท</option>
+                      {!limit && (
+                        <option value="onsite">Onsite ค่าสมัคร 350 บาท</option>
+                      )}
                       <option value="online">Online ค่าสมัคร 200 บาท</option>
                     </select>
                   </div>
@@ -432,7 +471,9 @@ export default function RegistrationForm() {
                 </div>
                 <SubmitButton />
               </div>
-              <p id="state" className="text-center text-red-500">{state?.message}</p>
+              <p id="state" className="text-center text-red-500">
+                {state?.message}
+              </p>
             </div>
           </div>
         </form>
