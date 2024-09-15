@@ -139,6 +139,7 @@ export default function RegistrationForm() {
                       id="education"
                       name="education"
                       autoComplete="education-level"
+                      required
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
                       <option>มัธยมศึกษาตอนต้น</option>
@@ -162,6 +163,7 @@ export default function RegistrationForm() {
                       id="title"
                       name="title"
                       autoComplete="title-name"
+                      required
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
                       <option>นาย</option>
@@ -185,6 +187,7 @@ export default function RegistrationForm() {
                       name="firstname"
                       id="firstname"
                       autoComplete="first-name"
+                      required
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
                     />
                   </div>
@@ -202,6 +205,7 @@ export default function RegistrationForm() {
                       name="lastname"
                       id="lastname"
                       autoComplete="last-name"
+                      required
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
                     />
                   </div>
@@ -223,6 +227,7 @@ export default function RegistrationForm() {
                       type="email"
                       autoComplete="email"
                       placeholder="example@email.com"
+                      required
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
                     />
                   </div>
@@ -241,9 +246,10 @@ export default function RegistrationForm() {
                     <input
                       id="phone"
                       name="phone"
-                      type="text"
+                      type="tel"
                       autoComplete="phone"
                       placeholder="0999999999"
+                      required
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
                     />
                   </div>
