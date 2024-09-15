@@ -223,6 +223,7 @@ export default function RegistrationForm() {
                   >
                     สิ่งที่แพ้ (อาหาร ยา และ อื่น ๆ)
                   </label>
+                  <p className="block text-sm font-medium leading-6 text-gray-500">เฉพาะผู้สมัคร onsite เท่านั้น</p>
                   <div className="mt-2">
                     <input
                       id="allergy"
