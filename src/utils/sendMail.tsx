@@ -11,16 +11,12 @@ interface ISendMail {
 }
 
 export async function sendMail({ to, subject, firstname, lastname, text }: ISendMail) {
-  const { SMTP_EMAIL, SMTP_PASSWORD } = process.env;
+  const { SMTP_EMAIL } = process.env;
   const transport = nodemailer.createTransport({
-    service: "gmail",
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: SMTP_EMAIL,
-      pass: SMTP_PASSWORD,
-    },
+    host: "smtp-relay.gmail.com",
+    port: 587,
+    secure: false,
+    requireTLS: true,
   });
   try {
     await transport.verify();
@@ -37,7 +33,7 @@ export async function sendMail({ to, subject, firstname, lastname, text }: ISend
       text={text}
     />);
     const result = await transport.sendMail({
-      from: `MDCU Converse <${SMTP_EMAIL}>`,
+      from: SMTP_EMAIL,
       to,
       subject,
       html: emailHtml,

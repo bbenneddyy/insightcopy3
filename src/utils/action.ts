@@ -139,49 +139,53 @@ export async function updateRegistrationStatus(id: string, status: string) {
     });
 
     // Send email to alert participant that the application is accepted.
-    if (status === "accepted") {
-      const data = await db.registration.findUnique({
-        where: { id },
-      });
+    const data = await db.registration.findUnique({
+      where: { id },
+    });
+    const parse = sendMailSchema.safeParse(data);
 
-      const parse = sendMailSchema.safeParse(data);
-
-      if (!parse.success) {
-        return {
-          message: "Fail to get user data",
-          status: 500,
-        };
-      }
-
-      const user = parse.data;
-
-      const mailOptions = {
-        to: user.email,
-        subject:
-          "ยืนยันการส่งข้อมูลเข้าร่วมงานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ 34",
-        firstname: user.firstname,
-        lastname: user.lastname,
-        text: "",
+    if (!parse.success) {
+      return {
+        message: "Fail to get user data",
+        status: 500,
       };
+    }
 
+    const user = parse.data;
+
+    const mailOptions = {
+      to: user.email,
+      subject: "ยืนยันการส่งข้อมูลเข้าร่วมงานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ 34",
+      firstname: user.firstname,
+      lastname: user.lastname,
+      text: "",
+    };
+
+    if (status === "accepted") {
       if (user.site === "online") {
-        mailOptions.text = `ขอส่งข้อมูลเข้าร่วมงานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ 34
-          “งานที่คลายข้อสงสัย เจาะลึกประสบการณ์ในการเรียนแพทย์
+        mailOptions.text = `ทางผู้จัดงานขอยืนยันการเข้าร่วมงานเสวนาของท่าน โดยขอแจ้งรายละเอียดงาน ดังนี้
+          “งานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ 34 งานที่คลายข้อสงสัย เจาะลึกประสบการณ์ในการเรียนแพทย์
           จากอาจารย์และรุ่นพี่คณะแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย” ในวันที่ 2
           พฤศจิกายน 2567 ในรูปแบบ Online ผ่านระบบ MS team Townhall โดยสำหรับ
-          URL สำหรับเข้าร่วมจะส่งให้ภายใน 7 วันก่อนเริ่มงาน`;
+          URL สำหรับเข้าร่วมจะส่งให้ภายใน 7 วันก่อนเริ่มงาน หรือสามารถเข้าร่วมงานผ่านทางระบบ log-in ทาง converse.docchula.com`;
       } else if (user.site === "onsite") {
-        mailOptions.text = `ขอส่งข้อมูลเข้าร่วมงานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ 34
-          “งานที่คลายข้อสงสัย เจาะลึกประสบการณ์ในการเรียนแพทย์
+        mailOptions.text = `ทางผู้จัดงานขอยืนยันการเข้าร่วมงานเสวนาของท่านโดยขอแจ้งรายละเอียดงาน ดังนี้
+          “งานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ 34 งานที่คลายข้อสงสัย เจาะลึกประสบการณ์ในการเรียนแพทย์
           จากอาจารย์และรุ่นพี่คณะแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย” ในวันที่ 2
           พฤศจิกายน 2567 ในรูปแบบ Onsite ณ เวลา 09.00 น. ถึง 15.25 น.
-          ห้องเฉลิมพรมมาส อาคารอปร. คณะแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย โดย
-          Ticket code: `;
+          ห้องเฉลิมพรมมาส อาคารอปร. คณะแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย`;
       } else {
         return { message: "เกิดข้อผิดพลาดในการส่งอีเมล", status: 200 };
       }
       sendMail(mailOptions);
+    } else if ((status = "rejected")) {
+      mailOptions.subject = `พบปัญหาในการสมัครค่ายเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ 34`;
+      mailOptions.text = `ขออภัยในความไม่สะดวก ทางผู้จัดงานพบปัญหาในการตรวจสอบหลักฐานการสมัครของท่าน\nกรุณาติดต่อผู้จัดงานผ่านทาง Facebook Page:
+      ค่ายอยากเป็นหมอ สโมสรนิสิตคณะแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย\nแจ้งชื่อ นามสกุล อีเมล เบอร์โทรศัพท์ ของท่านที่ใช้สมัคร`;
+
+      sendMail(mailOptions);
     }
+
     return { message: `User is ${status}ed`, status: 200 };
   } catch (e) {
     console.error(e);
