@@ -43,6 +43,7 @@ export const submitFormSchema = z.object({
   sessionFour: z.string().optional().or(z.literal("")),
   sessionFive: z.string().optional().or(z.literal("")),
   sessionSix: z.string().optional().or(z.literal("")),
+  sessionSeven: z.string().optional().or(z.literal("")),
 });
 
 export const editFormSchema = z.object({

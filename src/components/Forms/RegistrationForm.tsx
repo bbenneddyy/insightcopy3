@@ -247,8 +247,8 @@ export default function RegistrationForm() {
                       autoComplete="site-type"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
-                      <option value="onsite">Onsite ค่าสมัคร 1000 บาท</option>
-                      <option value="online">Online ค่าสมัคร 400 บาท</option>
+                      <option value="onsite">Onsite ค่าสมัคร 350 บาท</option>
+                      <option value="online">Online ค่าสมัคร 200 บาท</option>
                     </select>
                   </div>
                 </div>
@@ -354,7 +354,7 @@ export default function RegistrationForm() {
                     htmlFor="sessionThree"
                     className="block text-sm font-medium leading-6 text-gray-900"
                   >
-                    ตีแผ่ชีวิตแพทย์
+                    ตีแผ่ชีวิต Clinical clerkship
                   </label>
                   <div className="mt-2">
                     <input
@@ -370,7 +370,7 @@ export default function RegistrationForm() {
                     htmlFor="sessionFour"
                     className="block text-sm font-medium leading-6 text-gray-900"
                   >
-                    หลักสูตรการเรียนแพทย์ (S/U grading หลักสูตรใหม่แพทย์จุฬาฯ)
+                    ความสุขกับชีวิตการเป็นแพทย์
                   </label>
                   <div className="mt-2">
                     <input
@@ -386,7 +386,7 @@ export default function RegistrationForm() {
                     htmlFor="sessionFive"
                     className="block text-sm font-medium leading-6 text-gray-900"
                   >
-                    การเตรียมตัวสอบเข้าคณะแพทย์
+                    หลักสูตรการเรียนแพทย์ (S/U grading หลักสูตรใหม่แพทย์จุฬาฯ)
                   </label>
                   <div className="mt-2">
                     <input
@@ -402,12 +402,28 @@ export default function RegistrationForm() {
                     htmlFor="sessionSix"
                     className="block text-sm font-medium leading-6 text-gray-900"
                   >
-                    จัดการความเครียดกับการอ่านหนังสือ
+                    การเตรียมตัวสอบเข้าคณะแพทย์
                   </label>
                   <div className="mt-2">
                     <input
                       id="sessionSix"
                       name="sessionSix"
+                      type="text"
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div className="sm:col-span-full">
+                  <label
+                    htmlFor="sessionSeven"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    จัดการความเครียดกับการอ่านหนังสือ
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      id="sessionSeven"
+                      name="sessionSeven"
                       type="text"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
                     />

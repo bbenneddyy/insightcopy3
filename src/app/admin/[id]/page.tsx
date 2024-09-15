@@ -57,6 +57,11 @@ export default async function ApprovePage({
             <p className="mb-2">
               <strong>สถานะ:</strong> {registeredUser.status}
             </p>
+            <p>
+              <strong>ประเภท:</strong> {registeredUser.site}
+              {registeredUser.site === "onsite" && <> (350 บาท)</>} 
+              {registeredUser.site === "online" && <> (200 บาท)</>} 
+            </p>
           </div>
           <div className="flex justify-center">
             {registeredUser.id && (

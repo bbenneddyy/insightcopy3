@@ -158,8 +158,8 @@ export default function EditInfoForm({ id, registeredUser }: IEditInfo) {
                                     defaultValue={registeredUser.site}
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                 >
-                                    <option value="onsite">Onsite ค่าสมัคร 1000 บาท</option>
-                                    <option value="online">Online ค่าสมัคร 400 บาท</option>
+                                    <option value="onsite">Onsite ค่าสมัคร 350 บาท</option>
+                                    <option value="online">Online ค่าสมัคร 200 บาท</option>
                                 </select>
                             </div>
                         </div>

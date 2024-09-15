@@ -46,6 +46,7 @@ export async function createParticipant(
     sessionFour: formData.get("sessionFour"),
     sessionFive: formData.get("sessionFive"),
     sessionSix: formData.get("sessionSix"),
+    sessionSeven: formData.get("sessionSeven"),
   });
 
   if (!parse.success) {
@@ -91,6 +92,7 @@ export async function createParticipant(
             { sessionNum: 4, question: data.sessionFour || "" },
             { sessionNum: 5, question: data.sessionFive || "" },
             { sessionNum: 6, question: data.sessionSix || "" },
+            { sessionNum: 7, question: data.sessionSeven || "" },
           ],
         },
       },
