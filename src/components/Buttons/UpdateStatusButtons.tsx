@@ -4,7 +4,7 @@ import { updateRegistrationStatus } from "@/utils/action";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function UpdateStatusButtons({ id }: { id: string }) {
+export default function UpdateStatusButtons({ id, currentStatus }: { id: string, currentStatus: string }) {
   const router = useRouter();
   const handleClick = async (status: string) => {
     const updatedRegistration = await updateRegistrationStatus(id, status);
@@ -18,7 +18,8 @@ export default function UpdateStatusButtons({ id }: { id: string }) {
   return (
     <>
       <button
-        className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+        className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+        disabled={currentStatus !== "pending"}
         onClick={() => handleClick("rejected")}
       >
         Reject
@@ -31,7 +32,8 @@ export default function UpdateStatusButtons({ id }: { id: string }) {
         Edit
       </Link>
       <button
-        className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+        className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+        disabled={currentStatus !== "pending"}
         onClick={() => handleClick("accepted")}
       >
         Accept
