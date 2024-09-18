@@ -320,14 +320,12 @@ export default function RegistrationForm() {
                     <p className="text-sm font-bold">
                       รายละเอียดการชำระค่าสมัคร
                     </p>
-                    <p className="text-sm">
-                      ธนาคารกสิกรไทย สาขาโรงพยาบาลจุฬาลงกรณ์
-                    </p>
-                    <p className="text-sm">เลขบัญชี 184-3-90877-9</p>
-                    <p className="text-sm">
-                      (นายธีรศักดิ์ เขินประติยุทธและนายเขมชาติ
-                      มั่นคงและนายพศิน ลาภเอนกอนันต์)
-                    </p>
+                    <ul className="text-sm space-y-2 bg-gray-100 p-3 rounded-lg">
+                      <li>ธนาคารกสิกรไทย สาขาโรงพยาบาลจุฬาลงกรณ์</li>
+                      <li>เลขบัญชี 184-3-90877-9</li>
+                      <li>(นายธีรศักดิ์ เขินประติยุทธและนายเขมชาติ
+                        มั่นคงและนายพศิน ลาภเอนกอนันต์)</li>
+                    </ul>
                   </div>
                   <label
                     htmlFor="cover-photo"
