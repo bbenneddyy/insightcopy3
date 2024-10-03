@@ -17,12 +17,13 @@ export async function sendMail({ to, subject, firstname, lastname, text }: ISend
     service: "gmail",
     host: "smtp.gmail.com",
     port: 465,
-    secure: false,
+    secure: true,
     auth: {
       user: SMTP_EMAIL,
       pass: SMTP_PASSWORD,
     }
   });
+
   try {
     await transport.verify();
   } catch (error) {
@@ -31,19 +32,21 @@ export async function sendMail({ to, subject, firstname, lastname, text }: ISend
   }
 
   try {
-    const emailHtml = render(<EmailTemplate
+    const emailHtml = await render(<EmailTemplate
       firstname={firstname}
       lastname={lastname}
       preview={subject}
       text={text}
     />);
+
     const result = await transport.sendMail({
       from: SMTP_EMAIL,
       to,
       subject,
       html: emailHtml,
     });
-    console.log("Email sent: ", result.response)
+
+    console.log("Email sent: ", result.response);
   } catch (error) {
     console.error("Unable to send email ", error);
   }
