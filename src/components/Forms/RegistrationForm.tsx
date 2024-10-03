@@ -371,7 +371,7 @@ export default function RegistrationForm() {
                 </div>
                 {/* Questions zone */}
                 <span className="sm:col-span-full font-bold">
-                  ส่งคำถามในแต่ละ session (ถ้ามี) (ไม่เกิน 190 ตัวอักษร)
+                  ส่งคำถามในแต่ละ session (ถ้ามี)
                 </span>
                 <div className="sm:col-span-full">
                   <label

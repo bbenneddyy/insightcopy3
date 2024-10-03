@@ -40,6 +40,6 @@ model Question {
   participant   Registration @relation(fields: [participantId], references: [id])
   participantId String
   sessionNum    Int
-  question      String
+  question      String       @db.Text
   created_at    DateTime     @default(now())
 }
