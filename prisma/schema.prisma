@@ -28,7 +28,7 @@ model Registration {
   phone      String
   allergy    String?
   site       String
-  reason     String?
+  reason     String?    @db.Text
   questions  Question[]
   status     String     @default("pending")
   created_at DateTime   @default(now())
