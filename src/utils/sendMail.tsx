@@ -17,7 +17,7 @@ export async function sendMail({ to, subject, firstname, lastname, text }: ISend
     service: "gmail",
     host: "smtp.gmail.com",
     port: 465,
-    secure: true,
+    secure: false,
     auth: {
       user: SMTP_EMAIL,
       pass: SMTP_PASSWORD,
