@@ -11,12 +11,17 @@ interface ISendMail {
 }
 
 export async function sendMail({ to, subject, firstname, lastname, text }: ISendMail) {
-  const { SMTP_EMAIL } = process.env;
+  const { SMTP_EMAIL, SMTP_PASSWORD } = process.env;
+
   const transport = nodemailer.createTransport({
-    host: "smtp-relay.gmail.com",
-    port: 587,
-    secure: false,
-    requireTLS: true,
+    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: SMTP_EMAIL,
+      pass: SMTP_PASSWORD,
+    }
   });
   try {
     await transport.verify();
