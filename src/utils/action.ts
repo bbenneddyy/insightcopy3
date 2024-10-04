@@ -155,7 +155,7 @@ export async function updateRegistrationStatus(id: string, status: string) {
 
     const mailOptions = {
       to: user.email,
-      subject: "ยืนยันการส่งข้อมูลเข้าร่วมงานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ 34",
+      subject: "ยืนยันการสมัครเข้าร่วมงานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ 34",
       firstname: user.firstname,
       lastname: user.lastname,
       text: "",
