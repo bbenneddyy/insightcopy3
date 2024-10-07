@@ -11,6 +11,10 @@ interface QuestionData {
 export default function GetQuestionsButton() {
   // Helper function for converting json to csv
   function jsonToCsv(jsonData: QuestionData[]): string {
+    if (!jsonData || jsonData.length === 0) {
+      console.error("No data available to convert.");
+      return "";
+    }
     const headers = Object.keys(jsonData[0]) as (keyof QuestionData)[];
     const rows: string[] = [headers.join(',')];
 

@@ -17,6 +17,10 @@ interface ParticipantData {
 export default function GetCSVButton() {
   // Helper function for converting json to csv
   function jsonToCsv(jsonData: ParticipantData[]): string {
+    if (!jsonData || jsonData.length === 0) {
+      console.error("No data available to convert.");
+      return "";
+    }
     const headers = Object.keys(jsonData[0]) as (keyof ParticipantData)[];
     const rows: string[] = [headers.join(',')];
 
