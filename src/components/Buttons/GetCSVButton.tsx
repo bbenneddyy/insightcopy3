@@ -17,16 +17,18 @@ interface ParticipantData {
 export default function GetCSVButton() {
   // Helper function for converting json to csv
   function jsonToCsv(jsonData: ParticipantData[]): string {
-    let csv = '';
-    // Get the headers
-    const headers: (keyof ParticipantData)[] = ['title', 'firstname', 'lastname', 'email', 'site', 'allergy', 'reason', 'phone', 'education' ];
-    csv += headers.join(',') + '\n';
-    // Add the data
-    jsonData.forEach(function (row: ParticipantData) {
-      let data = headers.map(header => JSON.stringify(row[header])).join(','); // Add JSON.stringify statement
-      csv += data + '\n';
-    });
-    return csv;
+    const headers = Object.keys(jsonData[0]) as (keyof ParticipantData)[];
+    const rows: string[] = [headers.join(',')];
+
+    for (const row of jsonData) {
+      const values = headers.map(header => {
+        const value = row[header]?.toString() ?? '';
+        return `"${value.replace(/"/g, '""')}"`;
+      });
+      rows.push(values.join(','));
+    }
+
+    return rows.join('\n');
   }
   async function handleClick() {
     const currentTime = new Date().toISOString();
@@ -36,7 +38,7 @@ export default function GetCSVButton() {
       console.error("No participant data available.");
       return;
     }
-    
+
     const csvData = jsonToCsv(participantData);
     // Create a CSV file and allow the user to download it
     const blob = new Blob([csvData], { type: 'text/csv' });

@@ -1,3 +1,5 @@
+import GetCSVButton from "@/components/Buttons/GetQuestionsButton";
+import GetQuestionsButton from "@/components/Buttons/GetQuestionsButton";
 import ParticipantTable from "@/components/Tables/ParticipantTable";
 import { db } from "@/utils/db";
 
@@ -19,6 +21,10 @@ export default async function Admin() {
   const stats = await getStat();
   return (
     <>
+      <div className="flex mx-8 my-2 justify-end gap-2">
+        <GetQuestionsButton />
+        <GetCSVButton />
+      </div>
       {stats &&
         <div className="mx-auto max-w-7xl px-6 lg:px-8 my-4 bg-slate-200 rounded-xl">
           <dl className="flex gap-x-8 gap-y-16 text-center">

@@ -1,8 +1,6 @@
 import { db } from "@/utils/db";
 import { getServerSession } from "next-auth";
 import AdminTable from "./AdminTable";
-import GetCSVButton from "../Buttons/GetCSVButton";
-import GetQuestionsButton from "../Buttons/GetQuestionsButton";
 
 interface IRegistration {
   id: string;
@@ -38,15 +36,8 @@ async function fetchRegistrationData(): Promise<IRegistration[]> {
 export default async function ParticipantTable() {
   const data = await fetchRegistrationData();
   return (
-    <>
-      <div className="flex mx-8 my-2 justify-end gap-2">
-        <GetQuestionsButton />
-        <GetCSVButton />
-      </div>
-
-      <div className="overflow-scroll">
-        <AdminTable data={data} />
-      </div>
-    </>
+    <div className="overflow-scroll">
+      <AdminTable data={data} />
+    </div>
   );
 }
