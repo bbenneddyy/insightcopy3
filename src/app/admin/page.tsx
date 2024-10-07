@@ -1,4 +1,4 @@
-import GetCSVButton from "@/components/Buttons/GetQuestionsButton";
+import GetCSVButton from "@/components/Buttons/GetCSVButton";
 import GetQuestionsButton from "@/components/Buttons/GetQuestionsButton";
 import ParticipantTable from "@/components/Tables/ParticipantTable";
 import { db } from "@/utils/db";

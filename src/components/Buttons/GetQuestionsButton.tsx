@@ -3,24 +3,26 @@
 import { getQuestionsData } from "@/utils/data";
 
 interface QuestionData {
-    question: string | null;
-    sessionNum: number;
-    created_at: Date | null;
+  question: string | null;
+  sessionNum: number;
+  created_at: Date | null;
 }
 
-export default function GetCSVButton() {
+export default function GetQuestionsButton() {
   // Helper function for converting json to csv
   function jsonToCsv(jsonData: QuestionData[]): string {
-    let csv = '';
-    // Get the headers
-    const headers: (keyof QuestionData)[] = ['question', 'sessionNum', 'created_at' ];
-    csv += headers.join(',') + '\n';
-    // Add the data
-    jsonData.forEach(function (row: QuestionData) {
-      let data = headers.map(header => JSON.stringify(row[header])).join(','); // Add JSON.stringify statement
-      csv += data + '\n';
-    });
-    return csv;
+    const headers = Object.keys(jsonData[0]) as (keyof QuestionData)[];
+    const rows: string[] = [headers.join(',')];
+
+    for (const row of jsonData) {
+      const values = headers.map(header => {
+        const value = row[header]?.toString() ?? '';
+        return `"${value.replace(/"/g, '""')}"`;
+      });
+      rows.push(values.join(','));
+    }
+
+    return rows.join('\n');
   }
   async function handleClick() {
     const currentTime = new Date().toISOString();
@@ -30,7 +32,7 @@ export default function GetCSVButton() {
       console.error("No Questions data available.");
       return;
     }
-    
+
     const csvData = jsonToCsv(QuestionData);
     // Create a CSV file and allow the user to download it
     const blob = new Blob([csvData], { type: 'text/csv' });
