@@ -117,7 +117,7 @@ export default function RegistrationForm() {
         </div>
       ) : (
         <form
-          className="flex-col space-y-10 mx-auto py-9"
+          className="flex-col space-y-10 mx-auto px-4 py-9"
           onSubmit={onSubmit}
           action={formAction}
         >
