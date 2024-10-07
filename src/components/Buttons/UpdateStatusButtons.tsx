@@ -33,7 +33,7 @@ export default function UpdateStatusButtons({ id, currentStatus }: { id: string,
       </Link>
       <button
         className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
-        disabled={currentStatus !== "pending"}
+        disabled={currentStatus === "accepted" }
         onClick={() => handleClick("accepted")}
       >
         Accept
