@@ -18,20 +18,21 @@ interface IRegistration {
 }
 
 async function fetchRegistrationData(): Promise<IRegistration[]> {
-  const session = await getServerSession();
+  try {
+    const session = await getServerSession();
+    if (!session) {
+      return [];
+    }
 
-  if (!session) {
+    return await db.registration.findMany({
+      orderBy: [{ status: "asc" }],
+    });
+  } catch (error) {
+    console.error("Error fetching registration data:", error);
     return [];
   }
-
-  return await db.registration.findMany({
-    orderBy: [
-      {
-        status: "asc",
-      },
-    ],
-  });
 }
+
 
 export default async function ParticipantTable() {
   const data = await fetchRegistrationData();
