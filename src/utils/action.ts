@@ -186,7 +186,7 @@ export async function updateRegistrationStatus(id: string, status: string) {
       sendMail(mailOptions);
     }
 
-    return { message: `User is ${status}ed`, status: 200 };
+    return { message: `User is ${status}`, status: 200 };
   } catch (e) {
     console.error(e);
     return null;

@@ -9,9 +9,10 @@ export default function UpdateStatusButtons({ id, currentStatus }: { id: string,
   const handleClick = async (status: string) => {
     const updatedRegistration = await updateRegistrationStatus(id, status);
     if (updatedRegistration) {
-      alert(`User is ${status}ed`);
+      alert(`User is ${status}`);
     } else {
-      alert(`Error in ${status}ing user`);
+      const formatStatus = status.replace(/ed$/, 'ing');
+      alert(`Error in ${formatStatus} user`);
     }
     router.push("/admin");
   };
@@ -33,7 +34,7 @@ export default function UpdateStatusButtons({ id, currentStatus }: { id: string,
       </Link>
       <button
         className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
-        disabled={currentStatus === "accepted" }
+        disabled={currentStatus === "accepted"}
         onClick={() => handleClick("accepted")}
       >
         Accept

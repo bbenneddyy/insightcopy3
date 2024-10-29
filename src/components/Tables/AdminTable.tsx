@@ -232,7 +232,7 @@ function MyTable({
           {table.getRowModel().rows.map((row) => {
             return (
               <>
-                <tr onClick={() => handleRowClick(row.original.id)} className="cursor-pointer hover:bg-slate-100">
+                <tr key={row.id} onClick={() => handleRowClick(row.original.id)} className="cursor-pointer hover:bg-slate-100">
                   {row.getVisibleCells().map((cell) => {
                     return (
                       <td key={cell.id}>
