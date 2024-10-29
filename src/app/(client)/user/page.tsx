@@ -1,8 +1,9 @@
 "use client";
 
 // import Certificate from "@/components/Certificate/Certificate";
-import Video from "@/components/User/Video";
+import MainContent from "@/components/User/MainContent";
 import { loginUser } from "@/utils/action";
+import Link from "next/link";
 import { useFormState, useFormStatus } from "react-dom";
 
 const prevState = {
@@ -33,25 +34,25 @@ export default function User() {
       {state?.status === 200 && state?.authStatus === "accepted" ? (
         <>
           {/* <Certificate firstname={state.firstname || ""} lastname={state.lastname || ""} /> */}
-          <Video />
+          <MainContent />
         </>
       ) : state?.status === 200 && state?.authStatus === "rejected" ? (
         <>
-          <div className="flex justify-center items-start min-h-screen bg-gray-100 pt-16">
+          <div className="flex justify-center items-start min-h-screen pt-16">
             <div className="w-1/2 m-4 p-6 bg-white rounded-lg shadow-lg border border-gray-200">
               <div className="text-center mb-4">
                 <h1 className="text-lg font-semibold text-gray-800">
                   พบปัญหากับการลงทะเบียน กรุณาติดต่อทีมงานเสวนาค่ายอยากเป็นหมอ
                 </h1>
                 <div className="relative inline-block rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 mt-4">
-                  <a
+                  <Link
                     href="https://www.facebook.com/MDCUmedcamp"
                     rel="noopener noreferrer"
                     target="_blank"
                     className="font-semibold text-green-600 hover:text-green-700"
                   >
                     ติดต่อทีมงาน <span aria-hidden="true">&rarr;</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -59,7 +60,7 @@ export default function User() {
         </>
       ) : state?.status === 200 && state?.authStatus === "pending" ? (
         <>
-          <div className="flex justify-center items-start min-h-screen bg-gray-100 pt-16">
+          <div className="flex justify-center items-start min-h-screen pt-16">
             <div className="w-1/2 m-4 p-6 bg-white rounded-lg shadow-lg border border-gray-200">
               <div className="text-center mb-4">
                 <h1 className="text-lg font-semibold text-gray-800">
