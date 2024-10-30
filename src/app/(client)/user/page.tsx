@@ -11,6 +11,7 @@ const prevState = {
   firstname: "",
   lastname: "",
   authStatus: "",
+  site: "",
 };
 
 function SubmitButton() {
@@ -33,7 +34,7 @@ export default function User() {
       {state?.status === 200 && state?.authStatus === "accepted" ? (
         <>
           {/* <Certificate firstname={state.firstname || ""} lastname={state.lastname || ""} /> */}
-          <MainContent />
+          <MainContent site={state.site} />
         </>
       ) : state?.status === 200 && state?.authStatus === "rejected" ? (
         <>

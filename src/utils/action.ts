@@ -279,6 +279,7 @@ export async function loginUser(
       firstname: user.firstname,
       lastname: user.lastname,
       authStatus: user.status,
+      site: user.site,
     };
   } else {
     return {
