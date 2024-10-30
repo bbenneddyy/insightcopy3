@@ -12,7 +12,7 @@ export default function Home() {
           <div className="mx-auto max-w-3xl py-12 sm:py-12 lg:py-12">
             <div className="mb-8 flex justify-center">
               <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                <Link
+                <a
                   href="https://www.facebook.com/MDCUmedcamp"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -20,7 +20,7 @@ export default function Home() {
                 >
                   <span className="absolute inset-0" aria-hidden="true" />
                   อ่านเพิ่มเติม <span aria-hidden="true">&rarr;</span>
-                </Link>
+                </a>
               </div>
             </div>
             <div className="text-center">

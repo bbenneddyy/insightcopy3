@@ -3,7 +3,6 @@
 // import Certificate from "@/components/Certificate/Certificate";
 import MainContent from "@/components/User/MainContent";
 import { loginUser } from "@/utils/action";
-import Link from "next/link";
 import { useFormState, useFormStatus } from "react-dom";
 
 const prevState = {
@@ -45,14 +44,14 @@ export default function User() {
                   พบปัญหากับการลงทะเบียน กรุณาติดต่อทีมงานเสวนาค่ายอยากเป็นหมอ
                 </h1>
                 <div className="relative inline-block rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 mt-4">
-                  <Link
+                  <a
                     href="https://www.facebook.com/MDCUmedcamp"
                     rel="noopener noreferrer"
                     target="_blank"
                     className="font-semibold text-green-600 hover:text-green-700"
                   >
                     ติดต่อทีมงาน <span aria-hidden="true">&rarr;</span>
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
