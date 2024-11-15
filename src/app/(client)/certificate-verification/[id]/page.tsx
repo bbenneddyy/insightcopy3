@@ -30,7 +30,7 @@ export default async function CertificateVerification({
                 <>
                     <CheckCircleIcon className="h-40 w-40 text-green-500" />
                     <h1 className="text-2xl font-bold">
-                        {participantData.firstname} {participantData.lastname} ได้เข้าร่วมกิจกรรมงานเสวนาเปิดรั้วหมอจุฬาฯ
+                        คุณ {participantData.firstname} {participantData.lastname} ได้เข้าร่วมกิจกรรมงานเสวนาเปิดรั้วหมอจุฬาฯ
                     </h1>
                 </>
             ) : (
