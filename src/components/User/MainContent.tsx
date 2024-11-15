@@ -1,15 +1,24 @@
 "use client";
 
 import { LinkIcon } from "@heroicons/react/20/solid";
+import DownloadCertificate from "@/components/Certificate/DownloadCertificate";
 // import { useEffect, useRef } from "react";
 // import Player from "xgplayer";
 // import "xgplayer/dist/xgplayer.css";
 
 interface IMainContent {
   site: string;
+  id: string;
+  firstName: string;
+  lastName: string;
 }
 
-export default function MainContent({ site }: IMainContent) {
+export default function MainContent({
+  site,
+  id,
+  firstName,
+  lastName,
+}: IMainContent) {
   // const playerRef = useRef<HTMLDivElement>(null);
   // useEffect(() => {
   //   if (playerRef.current) {
@@ -51,6 +60,7 @@ export default function MainContent({ site }: IMainContent) {
           {/* <div className="flex justify-center mt-8">
             <div ref={playerRef} className="w-60 h-60 bg-slate-300 rounded-md"></div>
           </div> */}
+          <DownloadCertificate id={id} name={firstName} lastname={lastName} />
         </div>
       </div>
     </>

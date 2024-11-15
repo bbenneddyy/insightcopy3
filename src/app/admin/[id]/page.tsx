@@ -1,15 +1,10 @@
 import { db } from "@/utils/db";
 import Image from "next/image";
 import UpdateStatusButtons from "@/components/Buttons/UpdateStatusButtons";
-import { getServerSession } from "next-auth";
 
 export const dynamic = "force-dynamic";
 
 async function getRegisteredUser(id: string) {
-  const session = await getServerSession();
-  if (!session) {
-    return null;
-  }
   try {
     const registeredUser = await db.registration.findUnique({
       where: {

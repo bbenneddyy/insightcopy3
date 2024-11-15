@@ -276,6 +276,7 @@ export async function loginUser(
     return {
       message: "เข้าสู่ระบบสำเร็จ",
       status: 200,
+      id: user.id,
       firstname: user.firstname,
       lastname: user.lastname,
       authStatus: user.status,

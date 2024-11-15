@@ -84,3 +84,5 @@ export const loginFormSchema = z.object({
     message: "กรุณากรอกอีเมลที่ถูกต้อง",
   }),
 });
+
+export const verifyCodeFormSchema = z.string().trim().toLowerCase().cuid();
