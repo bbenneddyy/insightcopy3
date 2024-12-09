@@ -16,7 +16,8 @@ async function getRegisteredUser(id: string) {
     }
 }
 
-export default async function Edit({ params }: { params: { id: string }; }) {
+export default async function Edit(props: { params: Promise<{ id: string }>; }) {
+    const params = await props.params;
     const registeredUser = await getRegisteredUser(params.id);
     if (!registeredUser) {
         return (

@@ -2,9 +2,10 @@
 
 import VerificationCodeForm from "@/components/Forms/VerificationCodeForm";
 // import Certificate from "@/components/Certificate/Certificate";
+import { useActionState } from "react";
 import MainContent from "@/components/User/MainContent";
 import { loginUser } from "@/utils/action";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
 
 const prevState = {
   message: "",
@@ -30,7 +31,7 @@ function SubmitButton() {
 }
 
 export default function User() {
-  const [state, formAction] = useFormState(loginUser, prevState);
+  const [state, formAction] = useActionState(loginUser, prevState);
   return (
     <>
       {state?.status === 200 && state?.authStatus === "accepted" ? (

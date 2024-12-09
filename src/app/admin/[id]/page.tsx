@@ -17,12 +17,9 @@ async function getRegisteredUser(id: string) {
   }
 }
 
-export default async function ApprovePage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const registeredUser = await getRegisteredUser(params.id);
+export default async function ApprovePage({ params }: { params: Promise<{ id: string }> }) {
+  const id = (await params).id;
+  const registeredUser = await getRegisteredUser(id);
   if (!registeredUser) {
     return (
       <div>
@@ -73,7 +70,7 @@ export default async function ApprovePage({
             )}
           </div>
           <div className="flex justify-around mt-4">
-            <UpdateStatusButtons id={params.id} currentStatus={registeredUser.status} />
+            <UpdateStatusButtons id={id} currentStatus={registeredUser.status} />
           </div>
         </div>
       </div>

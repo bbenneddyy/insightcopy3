@@ -1,7 +1,8 @@
 'use client';
 
+import { useActionState } from "react";
 import { updateUserInformation } from "@/utils/action";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
 
 interface IEditInfo {
     id: string
@@ -27,7 +28,7 @@ function SubmitButton() {
 }
 
 export default function EditInfoForm({ id, registeredUser }: IEditInfo) {
-    const [state, formAction] = useFormState(updateUserInformation, prevState);
+    const [state, formAction] = useActionState(updateUserInformation, prevState);
     return (
         <form className="flex-col space-y-10 mx-auto py-9" action={formAction}>
             {/* Pass id to server action */}

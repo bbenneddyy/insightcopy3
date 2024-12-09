@@ -2,8 +2,8 @@
 
 import { createParticipant } from "@/utils/action";
 import { PhotoIcon } from "@heroicons/react/20/solid";
-import { FormEvent, useEffect, useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { FormEvent, useEffect, useState, useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { getCurrentNumberOnsiteParticipants } from "@/utils/data";
@@ -29,7 +29,7 @@ function SubmitButton() {
 }
 
 export default function RegistrationForm() {
-  const [state, formAction] = useFormState(createParticipant, initialState);
+  const [state, formAction] = useActionState(createParticipant, initialState);
   const [selectedImage, setSelectedImage] = useState<File | undefined>();
   const [preview, setPreview] = useState<string | undefined>();
   const [limit, setLimit] = useState(false);

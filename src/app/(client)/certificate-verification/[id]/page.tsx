@@ -18,12 +18,9 @@ async function getParticipantData(id: string) {
     }
 }
 
-export default async function CertificateVerification({
-    params,
-}: {
-    params: { id: string };
-}) {
-    const participantData = await getParticipantData(params.id);
+export default async function CertificateVerification({ params }: { params: Promise<{ id: string }> }) {
+    const id = (await params).id;
+    const participantData = await getParticipantData(id);
     return (
         <div className="flex flex-col space-y-2 items-center mt-10">
             {participantData ? (
