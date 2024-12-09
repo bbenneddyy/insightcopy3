@@ -4,7 +4,7 @@
 
 - Registration
 - Issuing certificate
-- Certification verification
+- Certificate verification
 - Display recorded videos
 - Admin page
 
@@ -13,7 +13,7 @@
 - Archive previous participants
 
 > [!CAUTION]
-> DO NOT delete the previous data because it will break cerfitication verification
+> DO NOT delete the previous data because it will break certificate verification
 
 ## Dependencies
 
