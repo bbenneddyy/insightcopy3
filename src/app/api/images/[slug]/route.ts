@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import path from "path";
 
 // reguest is required according to https://nextjs.org/docs/app/building-your-application/routing/route-handlers#dynamic-route-segments
-export async function GET({ params }: { params: Promise<{ slug: string }> }) {
+export async function GET(request: Request, { params }: { params: Promise<{ slug: string }> }) {
   const user = (await params).slug;
   if (user && user.length) {
     const publicDir = path.join(process.cwd(), "assets");
