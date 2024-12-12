@@ -11,7 +11,7 @@ async function getRegisteredUser(id: string) {
             },
         });
         return registeredUser;
-    } catch (e) {
+    } catch {
         return null;
     }
 }

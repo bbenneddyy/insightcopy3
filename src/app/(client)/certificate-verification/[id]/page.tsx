@@ -13,7 +13,7 @@ async function getParticipantData(id: string) {
             },
         });
         return participantData;
-    } catch (e) {
+    } catch {
         return null;
     }
 }

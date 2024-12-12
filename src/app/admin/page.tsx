@@ -13,7 +13,7 @@ async function getStat() {
       _count: true,
     });
     return userCounts
-  } catch (e) {
+  } catch {
     return null;
   }
 }
