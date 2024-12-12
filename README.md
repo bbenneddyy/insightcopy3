@@ -11,6 +11,8 @@
 ## Required maintenance
 
 - Archive previous participants
+- Update event's information
+- Update questions
 
 > [!CAUTION]
 > DO NOT delete the previous data because it will break certificate verification
