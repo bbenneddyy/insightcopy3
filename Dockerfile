@@ -54,12 +54,6 @@ COPY --from=builder --chown=nextjs:nodejs /app/assets ./assets
 # Copies prisma files for linting
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 
-# Install prisma for migration
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
-    apk add --no-cache bash && \
-    VERSION=$(node -e 'console.log(require("./package.json").devDependencies.prisma)') && \
-    pnpm add prisma@$VERSION
-
 USER nextjs
 
 EXPOSE 3000
