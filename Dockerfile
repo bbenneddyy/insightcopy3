@@ -1,4 +1,4 @@
-FROM node:20-alpine3.20 AS base
+FROM node:20 AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
@@ -55,10 +55,10 @@ COPY --from=builder --chown=nextjs:nodejs /app/assets ./assets
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 
 # Install prisma for migration
-# RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
-#     apk add --no-cache bash && \
-#     VERSION=$(node -e 'console.log(require("./package.json").devDependencies.prisma)') && \
-#     pnpm add prisma@$VERSION
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
+    apk add --no-cache bash && \
+    VERSION=$(node -e 'console.log(require("./package.json").devDependencies.prisma)') && \
+    pnpm add prisma@$VERSION
 
 USER nextjs
 
