@@ -6,7 +6,7 @@ services:
     image: converse-app
     pull_policy: build
     volumes:
-      - /srv/mdcu-converse/assets:/app/assets:rw,z
+      - /storage/mdcu-converse/assets:/app/assets:rw,z
     restart: always
     env_file:
       - stack.env
