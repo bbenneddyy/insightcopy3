@@ -10,29 +10,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id         String   @id @default(cuid())
-  email      String   @unique
-  name       String?
-  password   String
-  created_at DateTime @default(now())
-}
-
 model Registration {
-  id         String     @id @default(cuid())
-  education  String
-  title      String
-  firstname  String
-  lastname   String
-  email      String     @unique
-  phone      String
-  allergy    String?
-  site       String
-  reason     String?    @db.Text
-  questions  Question[]
-  status     String     @default("pending")
-  created_at DateTime   @default(now())
-  file_type  String?
+  id           String     @id @default(cuid())
+  education    String
+  title        String
+  firstname    String
+  lastname     String
+  email        String     @unique
+  phone        String
+  allergy      String?
+  site         String
+  reason       String?    @db.Text
+  questions    Question[]
+  status       String     @default("pending")
+  created_at   DateTime   @default(now())
+  file_type    String?
+  archive      Boolean    @default(false)
+  event_number Int
 }
 
 model Question {

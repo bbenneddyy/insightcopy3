@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Navbar from "../components/Navbar/Navbar";
-import { webStatus } from "@/utils/config";
+import { eventNumber, webStatus } from "@/utils/config";
 import { unstable_noStore as noStore } from "next/cache";
 export default function Home() {
   noStore();
@@ -25,7 +25,7 @@ export default function Home() {
             </div>
             <div className="text-center">
               <h1 className="text-4xl font-bold leading-normal tracking-tight text-gray-900">
-                เสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ 34
+                เสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ {eventNumber}
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
                 กิจกรรมเสวนาจากรุ่นพี่คณะแพทยศาสตร์

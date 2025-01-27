@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import SignOutButton from "../Buttons/SignOutButton";
+import { eventNumber } from "@/utils/config";
 
 export default function AdminNavbar() {
   return (
@@ -13,7 +14,7 @@ export default function AdminNavbar() {
           height={50}
         />
         <h1 className="font-bold text-xl mx-6 hidden md:block">
-          Admin เสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ 34
+          Admin เสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ {eventNumber}
         </h1>
       </Link>
       <ul className="flex text-center space-x-6">

@@ -10,7 +10,7 @@ import {
 import { writeFile } from "fs/promises";
 import path from "path";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
-import { maximumOnsiteParticipants, webStatus } from "./config";
+import { eventNumber, maximumOnsiteParticipants, webStatus } from "./config";
 import { sendMail } from "./sendMail";
 import { getCurrentNumberOnsiteParticipants } from "./data";
 import { unstable_noStore as noStore } from "next/cache";
@@ -84,6 +84,7 @@ export async function createParticipant(
         site: data.site,
         reason: data.reason,
         file_type: fileType,
+        event_number: eventNumber,
         questions: {
           create: [
             { sessionNum: 1, question: data.sessionOne || "" },
@@ -106,10 +107,10 @@ export async function createParticipant(
     // Send confirmation email after registration
     sendMail({
       to: data.email,
-      subject: "ยืนยันการส่งข้อมูลเข้าร่วมงานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ 34",
+      subject: `ยืนยันการส่งข้อมูลเข้าร่วมงานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ ${eventNumber}`,
       firstname: data.firstname,
       lastname: data.lastname,
-      text: "ทางนิสิตผู้จัดงานขอขอบคุณที่ท่านได้สมัครเข้าร่วมงานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ 34 ประจำปีการศึกษา 2567 และ ขอให้ท่านกรุณารอรับอีเมลยืนยันการตรวจสอบหลักฐานการชำระเงินอีกครั้งหนึ่ง",
+      text: `ทางนิสิตผู้จัดงานขอขอบคุณที่ท่านได้สมัครเข้าร่วมงานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ ${eventNumber} และ ขอให้ท่านกรุณารอรับอีเมลยืนยันการตรวจสอบหลักฐานการชำระเงินอีกครั้งหนึ่ง`,
     });
 
     return {
@@ -155,7 +156,7 @@ export async function updateRegistrationStatus(id: string, status: string) {
 
     const mailOptions = {
       to: user.email,
-      subject: "ยืนยันการสมัครเข้าร่วมงานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ 34",
+      subject: `ยืนยันการสมัครเข้าร่วมงานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ ${eventNumber}`,
       firstname: user.firstname,
       lastname: user.lastname,
       text: "",
@@ -164,13 +165,13 @@ export async function updateRegistrationStatus(id: string, status: string) {
     if (status === "accepted") {
       if (user.site === "online") {
         mailOptions.text = `ทางผู้จัดงานขอยืนยันการเข้าร่วมงานเสวนาของท่าน โดยขอแจ้งรายละเอียดงาน ดังนี้
-          “งานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ 34 งานที่คลายข้อสงสัย เจาะลึกประสบการณ์ในการเรียนแพทย์
+          “งานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ ${eventNumber} งานที่คลายข้อสงสัย เจาะลึกประสบการณ์ในการเรียนแพทย์
           จากอาจารย์และรุ่นพี่คณะแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย” ในวันที่ 2
           พฤศจิกายน 2567 ในรูปแบบ Online ผ่านระบบ MS team Townhall โดยสำหรับ
           URL สำหรับเข้าร่วมจะส่งให้ภายใน 7 วันก่อนเริ่มงาน หรือสามารถเข้าร่วมงานผ่านระบบ login ทาง converse.docchula.com`;
       } else if (user.site === "onsite") {
         mailOptions.text = `ทางผู้จัดงานขอยืนยันการเข้าร่วมงานเสวนาของท่านโดยขอแจ้งรายละเอียดงาน ดังนี้
-          “งานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ 34 งานที่คลายข้อสงสัย เจาะลึกประสบการณ์ในการเรียนแพทย์
+          “งานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ ${eventNumber} งานที่คลายข้อสงสัย เจาะลึกประสบการณ์ในการเรียนแพทย์
           จากอาจารย์และรุ่นพี่คณะแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย” ในวันที่ 2
           พฤศจิกายน 2567 ในรูปแบบ Onsite ณ เวลา 09.00 น. ถึง 15.25 น.
           ห้องเฉลิมพรมมาส อาคารอปร. คณะแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย`;
@@ -179,7 +180,7 @@ export async function updateRegistrationStatus(id: string, status: string) {
       }
       sendMail(mailOptions);
     } else if ((status = "rejected")) {
-      mailOptions.subject = `พบปัญหาในการสมัครค่ายเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ 34`;
+      mailOptions.subject = `พบปัญหาในการสมัครค่ายเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ ${eventNumber}`;
       mailOptions.text = `ขออภัยในความไม่สะดวก ทางผู้จัดงานพบปัญหาในการตรวจสอบหลักฐานการสมัครของท่าน\nกรุณาติดต่อผู้จัดงานผ่านทาง Facebook Page:
       ค่ายอยากเป็นหมอ สโมสรนิสิตคณะแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย\nแจ้งชื่อ นามสกุล อีเมล เบอร์โทรศัพท์ ของท่านที่ใช้สมัคร`;
 
@@ -264,7 +265,10 @@ export async function loginUser(
   const data = parse.data;
 
   const user = await db.registration.findUnique({
-    where: { email: data.email },
+    where: {
+      email: data.email,
+      archive: false,
+    },
   });
   if (!user)
     return {

@@ -25,6 +25,9 @@ async function fetchRegistrationData(): Promise<IRegistration[]> {
     }
 
     return await db.registration.findMany({
+      where: {
+        archive: false,
+      },
       orderBy: [{ status: "asc" }],
     });
   } catch (error) {
