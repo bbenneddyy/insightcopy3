@@ -10,6 +10,7 @@ async function getParticipantData(id: string) {
             select: {
                 firstname: true,
                 lastname: true,
+                event_number: true,
             },
         });
         return participantData;
@@ -27,7 +28,7 @@ export default async function CertificateVerification({ params }: { params: Prom
                 <>
                     <CheckCircleIcon className="h-40 w-40 text-green-500" />
                     <h1 className="text-2xl font-bold">
-                        คุณ {participantData.firstname} {participantData.lastname} ได้เข้าร่วมกิจกรรมงานเสวนาเปิดรั้วหมอจุฬาฯ
+                        คุณ {participantData.firstname} {participantData.lastname} ได้เข้าร่วมกิจกรรมงานเสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ {participantData.event_number}
                     </h1>
                 </>
             ) : (

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { webStatus } from "@/utils/config";
+import { eventNumber, webStatus } from "@/utils/config";
 import { unstable_noStore as noStore } from "next/cache";
 
 export default function Navbar() {
@@ -15,7 +15,7 @@ export default function Navbar() {
           height={50}
         />
         <h1 className="font-bold text-xl mx-6 hidden md:block">
-          เสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ 34
+          เสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ {eventNumber}
         </h1>
       </Link>
       <ul className="flex text-center space-x-6">
