@@ -1,4 +1,4 @@
-# MDCU Insight Registration Website 
+# MDCU Insight Registration Website
 
 ## Features
 
@@ -11,8 +11,14 @@
 ## Required maintenance
 
 - Archive previous participants
-- Update event's information
-- Update questions
+
+  ```sql
+  UPDATE Registration
+  SET archive = 1
+  WHERE archive = 0 AND event_number = [event_number]; -- Replace [event_number] with the event number that you want to archive
+  ```
+
+- Update event's information, questions, recorded videos, and certificate
 
 > [!CAUTION]
 > DO NOT delete the previous data because it will break certificate verification
