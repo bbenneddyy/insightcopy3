@@ -19,7 +19,7 @@ function SubmitButton() {
     return (
         <button
             type="submit"
-            className="rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+            className="rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
             aria-disabled={pending}
         >
             แก้ไข
@@ -33,7 +33,7 @@ export default function EditInfoForm({ id, registeredUser }: IEditInfo) {
         <form className="flex-col space-y-10 mx-auto py-9" action={formAction}>
             {/* Pass id to server action */}
             <input type="hidden" name="userId" value={id} />
-            <div className="flex flex-col items-center space-y-3 rounded-lg shadow-sm">
+            <div className="flex flex-col items-center space-y-3 rounded-lg shadow-xs">
                 <div className="border-b border-gray-900/10 pb-12">
                     <h2 className="text-base font-bold leading-7 text-gray-900">ลงทะเบียน</h2>
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -45,7 +45,7 @@ export default function EditInfoForm({ id, registeredUser }: IEditInfo) {
                                     name="education"
                                     autoComplete="education-level"
                                     defaultValue={registeredUser.education}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                 >
                                     <option>มัธยมศึกษาตอนต้น</option>
                                     <option>มัธยมศึกษาปีที่ 4</option>
@@ -64,7 +64,7 @@ export default function EditInfoForm({ id, registeredUser }: IEditInfo) {
                                     name="title"
                                     autoComplete="title-name"
                                     defaultValue={registeredUser.title}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                 >
                                     <option>นาย</option>
                                     <option>นาง</option>
@@ -83,7 +83,7 @@ export default function EditInfoForm({ id, registeredUser }: IEditInfo) {
                                     id="firstname"
                                     autoComplete="first-name"
                                     defaultValue={registeredUser.firstname}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
@@ -96,7 +96,7 @@ export default function EditInfoForm({ id, registeredUser }: IEditInfo) {
                                     id="lastname"
                                     autoComplete="last-name"
                                     defaultValue={registeredUser.lastname}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
@@ -109,7 +109,7 @@ export default function EditInfoForm({ id, registeredUser }: IEditInfo) {
                                     type="email"
                                     autoComplete="email"
                                     defaultValue={registeredUser.email}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
@@ -122,7 +122,7 @@ export default function EditInfoForm({ id, registeredUser }: IEditInfo) {
                                     type="text"
                                     autoComplete="phone"
                                     defaultValue={registeredUser.phone}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
@@ -140,7 +140,7 @@ export default function EditInfoForm({ id, registeredUser }: IEditInfo) {
                                     type="text"
                                     autoComplete="allergy"
                                     defaultValue={registeredUser.allergy}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
@@ -157,7 +157,7 @@ export default function EditInfoForm({ id, registeredUser }: IEditInfo) {
                                     name="site"
                                     autoComplete="site-type"
                                     defaultValue={registeredUser.site}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                 >
                                     <option value="onsite">Onsite ค่าสมัคร 350 บาท</option>
                                     <option value="online">Online ค่าสมัคร 200 บาท</option>

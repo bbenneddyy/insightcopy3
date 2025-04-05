@@ -129,28 +129,28 @@ function MyTable({
     <div className="flex flex-col justify-center p-2 w-full">
       <div className="flex items-center gap-2">
         <button
-          className="border rounded px-1 h-10"
+          className="border rounded-sm px-1 h-10"
           onClick={() => table.firstPage()}
           disabled={!table.getCanPreviousPage()}
         >
           {"<<"}
         </button>
         <button
-          className="border rounded px-1 h-10"
+          className="border rounded-sm px-1 h-10"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
           {"<"}
         </button>
         <button
-          className="border rounded px-1 h-10"
+          className="border rounded-sm px-1 h-10"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >
           {">"}
         </button>
         <button
-          className="border rounded px-1 h-10"
+          className="border rounded-sm px-1 h-10"
           onClick={() => table.lastPage()}
           disabled={!table.getCanNextPage()}
         >
@@ -174,12 +174,12 @@ function MyTable({
               const page = e.target.value ? Number(e.target.value) - 1 : 0;
               table.setPageIndex(page);
             }}
-            className="border h-10 rounded w-16 border-gray-200"
+            className="border h-10 rounded-sm w-16 border-gray-200"
           />
         </span>
         <select
           value={table.getState().pagination.pageSize}
-          className="border rounded h-10 border-gray-200"
+          className="border rounded-sm h-10 border-gray-200"
           onChange={(e) => {
             table.setPageSize(Number(e.target.value));
           }}
@@ -278,7 +278,7 @@ function Filter({
           ])
         }
         placeholder={`Min`}
-        className="w-24 border shadow rounded"
+        className="w-24 border shadow-sm rounded-sm"
       />
       <input
         type="number"
@@ -290,12 +290,12 @@ function Filter({
           ])
         }
         placeholder={`Max`}
-        className="w-24 border shadow rounded"
+        className="w-24 border shadow-sm rounded-sm"
       />
     </div>
   ) : (
     <input
-      className="min-w-full border shadow rounded border-gray-200"
+      className="min-w-full border shadow-sm rounded-sm border-gray-200"
       onChange={(e) => column.setFilterValue(e.target.value)}
       onClick={(e) => e.stopPropagation()}
       placeholder={`Search...`}

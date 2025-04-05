@@ -85,7 +85,7 @@ export default function DownloadCertificate({
       {allowCertificateDownload && (
         <div className="w-full flex justify-center">
           <button
-            className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 w-1/2"
+            className="bg-green-500 text-white py-2 px-4 rounded-sm hover:bg-green-600 w-1/2"
             onClick={handleDownloadCertificate}
           >
             {isDownloading ?

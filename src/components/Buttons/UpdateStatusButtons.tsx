@@ -19,7 +19,7 @@ export default function UpdateStatusButtons({ id, currentStatus }: { id: string,
   return (
     <>
       <button
-        className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+        className="bg-red-500 text-white py-2 px-4 rounded-sm hover:bg-red-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
         disabled={currentStatus !== "pending"}
         onClick={() => handleClick("rejected")}
       >
@@ -28,12 +28,12 @@ export default function UpdateStatusButtons({ id, currentStatus }: { id: string,
       <Link
         href={`/admin/edit/${id}`}
         prefetch={false}
-        className="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600"
+        className="bg-yellow-500 text-white py-2 px-4 rounded-sm hover:bg-yellow-600"
       >
         Edit
       </Link>
       <button
-        className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+        className="bg-green-500 text-white py-2 px-4 rounded-sm hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
         disabled={currentStatus === "accepted"}
         onClick={() => handleClick("accepted")}
       >
