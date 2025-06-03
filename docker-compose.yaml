@@ -6,7 +6,7 @@ services:
     image: insight-app
     pull_policy: build
     volumes:
-      - /storage/mdcu-converse/assets:/app/assets:rw,z
+      - /storage/insight/assets:/app/assets:rw,z
     restart: always
     env_file:
       - stack.env
