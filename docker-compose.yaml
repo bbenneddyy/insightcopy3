@@ -3,7 +3,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    image: converse-app
+    image: insight-app
     pull_policy: build
     volumes:
       - /storage/mdcu-converse/assets:/app/assets:rw,z
@@ -14,15 +14,15 @@ services:
       # Traefik configuration discovery
       # https://doc.traefik.io/traefik/providers/docker/#routing-configuration-with-labels
       - "traefik.enable=true"
-      - "traefik.http.middlewares.converse-redirect.redirectscheme.scheme=https"
-      - "traefik.http.middlewares.converse-redirect.redirectscheme.permanent=true"
-      - "traefik.http.routers.converse-http.middlewares=converse-redirect"
-      - "traefik.http.routers.converse-http.rule=Host(`converse.docchula.com`)"
-      - "traefik.http.routers.converse-http.entrypoints=web"
-      - "traefik.http.routers.converse-https.rule=Host(`converse.docchula.com`)"
-      - "traefik.http.routers.converse-https.entrypoints=websecure"
-      - "traefik.http.routers.converse-https.tls.certresolver=leresolver"
-      - "traefik.http.services.converse-https.loadbalancer.server.port=3000"
+      - "traefik.http.middlewares.insight-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.insight-redirect.redirectscheme.permanent=true"
+      - "traefik.http.routers.insight-http.middlewares=insight-redirect"
+      - "traefik.http.routers.insight-http.rule=Host(`insight.docchula.com`)"
+      - "traefik.http.routers.insight-http.entrypoints=web"
+      - "traefik.http.routers.insight-https.rule=Host(`insight.docchula.com`)"
+      - "traefik.http.routers.insight-https.entrypoints=websecure"
+      - "traefik.http.routers.insight-https.tls.certresolver=leresolver"
+      - "traefik.http.services.insight-https.loadbalancer.server.port=3000"
     deploy:
       resources:
         limits:
