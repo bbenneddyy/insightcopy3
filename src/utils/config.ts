@@ -7,4 +7,4 @@ export const webStatus = process.env.WEB_STATUS;
 // false: hide download certificate button
 export const allowCertificateDownload = true;
 
-export const eventNumber = 34;
+export const eventNumber = 35;
