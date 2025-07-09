@@ -11,7 +11,7 @@ async function getStat() {
     const userCounts = await db.registration.groupBy({
       where: {
         archive: {
-          not: '1',
+          not: true,
         },
       },
       by: ['status'],
