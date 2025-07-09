@@ -9,6 +9,11 @@ async function getStat() {
   // This function is inside admin route, so it is already protected.
   try {
     const userCounts = await db.registration.groupBy({
+      where: {
+        archive: {
+          not: '1',
+        },
+      },
       by: ['status'],
       _count: true,
     });
