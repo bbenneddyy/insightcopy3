@@ -12,16 +12,21 @@ export const submitFormSchema = z.object({
   education: z.string().min(1),
   title: z.string().min(1),
   firstname: z.string().trim().min(1, {
-    message: "กรุณากรอกชื่อ",
+    error: "กรุณากรอกชื่อ",
   }),
   lastname: z.string().trim().min(1, {
-    message: "กรุณากรอกนามสกุล",
+    error: "กรุณากรอกนามสกุล",
   }),
-  email: z.string().trim().email({
-    message: "กรุณากรอกอีเมลที่ถูกต้อง",
-  }),
+  email: z
+    .string()
+    .trim()
+    .check(
+      z.email({
+        error: "กรุณากรอกอีเมลที่ถูกต้อง",
+      })
+    ),
   phone: z.string().regex(/^\d{9,10}$/, {
-    message: "กรุณากรอกเบอร์โทรศัพท์ที่ถูกต้อง",
+    error: "กรุณากรอกเบอร์โทรศัพท์ที่ถูกต้อง",
   }),
   allergy: z.string().optional().or(z.literal("")),
   site: z.string().min(1),
@@ -51,16 +56,21 @@ export const editFormSchema = z.object({
   education: z.string().min(1),
   title: z.string().min(1),
   firstname: z.string().trim().min(1, {
-    message: "กรุณากรอกชื่อ",
+    error: "กรุณากรอกชื่อ",
   }),
   lastname: z.string().trim().min(1, {
-    message: "กรุณากรอกนามสกุล",
+    error: "กรุณากรอกนามสกุล",
   }),
-  email: z.string().trim().email({
-    message: "กรุณากรอกอีเมลที่ถูกต้อง",
-  }),
+email: z
+    .string()
+    .trim()
+    .check(
+      z.email({
+        error: "กรุณากรอกอีเมลที่ถูกต้อง",
+      })
+    ),
   phone: z.string().regex(/^\d{9,10}$/, {
-    message: "กรุณากรอกเบอร์โทรศัพท์ที่ถูกต้อง",
+    error: "กรุณากรอกเบอร์โทรศัพท์ที่ถูกต้อง",
   }),
   allergy: z.string().optional().or(z.literal("")),
   site: z.string().min(1),
@@ -68,20 +78,20 @@ export const editFormSchema = z.object({
 
 export const sendMailSchema = z.object({
   email: z.string().trim().email({
-    message: "กรุณากรอกอีเมลที่ถูกต้อง",
+    error: "กรุณากรอกอีเมลที่ถูกต้อง",
   }),
   firstname: z.string().trim().min(1, {
-    message: "กรุณากรอกชื่อ",
+    error: "กรุณากรอกชื่อ",
   }),
   lastname: z.string().trim().min(1, {
-    message: "กรุณากรอกนามสกุล",
+    error: "กรุณากรอกนามสกุล",
   }),
   site: z.string().min(1),
-})
+});
 
 export const loginFormSchema = z.object({
   email: z.string().trim().email({
-    message: "กรุณากรอกอีเมลที่ถูกต้อง",
+    error: "กรุณากรอกอีเมลที่ถูกต้อง",
   }),
 });
 
