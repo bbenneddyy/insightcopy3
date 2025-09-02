@@ -11,7 +11,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ slug
     const filePath = path.join(publicDir, fileUrl);
 
     try {
-      const data = await fs.readFile(filePath);
+      const data: any = await fs.readFile(filePath);
       const headers = new Headers();
       headers.set("Content-Type", "image");
       return new NextResponse(data, { status: 200, headers });

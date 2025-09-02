@@ -5,6 +5,11 @@ import { db } from "@/utils/db";
 
 export const dynamic = "force-dynamic";
 
+interface IStatus {
+  status: string;
+  _count: number;
+}
+
 async function getStat() {
   // This function is inside admin route, so it is already protected.
   try {
@@ -33,7 +38,7 @@ export default async function Admin() {
       {stats &&
         <div className="mx-auto max-w-7xl px-6 lg:px-8 my-4 bg-slate-200 rounded-xl">
           <dl className="flex gap-x-8 gap-y-16 text-center">
-            {stats.map((stat) => (
+            {stats.map((stat: IStatus) => (
               <div key={stat.status} className="mx-auto flex max-w-xs flex-col gap-y-3">
                 <dt className="text-base leading-7 text-gray-600 uppercase">{stat.status}</dt>
                 <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">

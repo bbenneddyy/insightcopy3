@@ -64,7 +64,7 @@ export default function DownloadCertificate({
       });
 
       // Save the modified PDF document
-      const pdfBytes = await pdfDoc.save();
+      const pdfBytes: any = await pdfDoc.save();
       const blob = new Blob([pdfBytes], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
