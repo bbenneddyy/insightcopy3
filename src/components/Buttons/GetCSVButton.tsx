@@ -49,7 +49,7 @@ export default function GetCSVButton() {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `converse_participant_data_${currentTime}.csv`;
+    a.download = `insight_participant_data_${currentTime}.csv`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

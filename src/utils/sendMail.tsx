@@ -24,7 +24,7 @@ export async function sendMail({ to, subject, firstname, lastname, text }: ISend
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     const { data } = await resend.emails.send({
-      from: 'MDCU Insight <no-reply@converse.docchula.com>',
+      from: 'MDCU Insight <no-reply@insight.docchula.com>',
       to: [to],
       subject: subject,
       react: <EmailTemplate
