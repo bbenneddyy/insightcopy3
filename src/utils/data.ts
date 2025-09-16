@@ -51,6 +51,10 @@ export async function getQuestionsData() {
         NOT: {
           question: "",
         },
+        participant: {
+          archive: false,
+          event_number: eventNumber,
+        },
       },
       select: {
         sessionNum: true,
