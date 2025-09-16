@@ -1,6 +1,7 @@
 "use server";
 
 import { db } from "./db";
+import { eventNumber } from "./config";
 
 // Get all participants' data
 export async function getParticipantData() {
@@ -8,6 +9,8 @@ export async function getParticipantData() {
     const participantData = await db.registration.findMany({
       where: {
         status: "accepted",
+        archive: false,
+        event_number: eventNumber,
       },
       select: {
         title: true,
@@ -47,7 +50,7 @@ export async function getQuestionsData() {
       where: {
         NOT: {
           question: "",
-        }
+        },
       },
       select: {
         sessionNum: true,
