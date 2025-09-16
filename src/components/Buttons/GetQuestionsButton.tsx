@@ -16,21 +16,22 @@ export default function GetQuestionsButton() {
       return "";
     }
     const headers = Object.keys(jsonData[0]) as (keyof QuestionData)[];
-    const rows: string[] = [headers.join(',')];
+    const rows: string[] = [headers.join(",")];
 
     for (const row of jsonData) {
-      const values = headers.map(header => {
-        const value = row[header]?.toString() ?? '';
+      const values = headers.map((header) => {
+        const value = row[header]?.toString() ?? "";
         return `"${value.replace(/"/g, '""')}"`;
       });
-      rows.push(values.join(','));
+      rows.push(values.join(","));
     }
 
-    return rows.join('\n');
+    // Use CRLF for better compatibility with Excel on Windows
+    return rows.join("\r\n");
   }
   async function handleClick() {
     const currentTime = new Date().toISOString();
-    const QuestionData = await getQuestionsData()
+    const QuestionData = await getQuestionsData();
 
     if (!QuestionData) {
       console.error("No Questions data available.");
@@ -39,9 +40,11 @@ export default function GetQuestionsButton() {
 
     const csvData = jsonToCsv(QuestionData);
     // Create a CSV file and allow the user to download it
-    const blob = new Blob([csvData], { type: 'text/csv' });
+    // Prepend UTF-8 BOM so Excel properly recognizes UTF-8 (Thai characters)
+    const bom = "\ufeff";
+    const blob = new Blob([bom + csvData], { type: "text/csv;charset=utf-8;" });
     const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
     a.download = `questions_${currentTime}.csv`;
     document.body.appendChild(a);
@@ -57,5 +60,5 @@ export default function GetQuestionsButton() {
         Download Questions
       </button>
     </>
-  )
+  );
 }
