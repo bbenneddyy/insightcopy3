@@ -80,6 +80,8 @@ export default function MainContent({
               จะสามารถใช้ได้หลังสิ้นสุดงานเสวนา
             </h3> */}
           </div>
+          <h3 className="text-center font-bold my-4">ติดตาม url สำหรับเข้าร่วมงาน online ได้ในหน้านี้</h3>
+
           <DownloadCertificate id={id} name={firstName} lastname={lastName} />
           <h3 className="text-center font-bold my-4">วีดีโอย้อนหลัง</h3>
           {videos.map((video) => (
