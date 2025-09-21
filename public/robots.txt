@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://insight.docchula.com/sitemap.xml

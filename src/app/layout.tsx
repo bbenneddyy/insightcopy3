@@ -10,7 +10,7 @@ const sarabun = Sarabun({
 })
 
 export const metadata: Metadata = {
-  title: `เสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ ${eventNumber}`,
+  title: `เสวนาเปิดรั้วหมอจุฬาฯ ครั้งที่ ${eventNumber} | insight docchula`,
   description: "งานที่คลายข้อสงสัย เจาะลึกประสบการณ์ในการเรียนแพทย์ จากอาจารย์และรุ่นพี่คณะแพทยศาสตร์ จุฬาฯ",
 };
 
