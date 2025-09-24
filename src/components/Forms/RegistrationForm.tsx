@@ -322,9 +322,24 @@ export default function RegistrationForm() {
                     </p>
                     <ul className="text-sm space-y-2 bg-gray-100 p-3 rounded-lg">
                       <li>ธนาคารกสิกรไทย สาขาโรงพยาบาลจุฬาลงกรณ์</li>
-                      <li>เลขบัญชี 184-3-90877-9</li>
-                      <li>(นาย ธีรศักดิ์ เขินประติยุทธ และ นาย เขมชาติ มั่นคง และ นาย พศิน ลาภเอนกอนันต์)</li>
+                      <li>เลขบัญชี 211-2-94222-2</li>
+                      <li>
+                        (โครงการค่ายอยากเป็นหมอ ครั้งที่ 35 โดย นาย วศิน วง)
+                      </li>
                     </ul>
+
+                    <div className="mt-4 flex flex-col items-center">
+                      <Image
+                        src="/images/S__313466884.jpg"
+                        alt="สแกน QR เพื่อโอนเข้าบัญชี"
+                        width={360}
+                        height={360}
+                        className="rounded-lg shadow-sm"
+                      />
+                      <p className="text-xs text-gray-600 mt-2">
+                        สแกน QR เพื่อโอนเข้าบัญชี
+                      </p>
+                    </div>
                   </div>
                   <label
                     htmlFor="cover-photo"
