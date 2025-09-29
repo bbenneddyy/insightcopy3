@@ -36,6 +36,8 @@ export async function getCurrentNumberOnsiteParticipants() {
     const numberOnsite = await db.registration.count({
       where: {
         site: "onsite",
+        archive: false,
+        event_number: eventNumber,
       },
     });
     return numberOnsite;
